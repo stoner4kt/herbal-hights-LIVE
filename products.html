@@ -28,12 +28,8 @@
     .navbar { background: rgba(34,38,41,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
     .brand-logo { height: 3rem; width: auto; max-height: 68px; object-fit: contain; display: block; }
     .brand-wrap { padding: 0.45rem 0.75rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); box-shadow: 0 10px 24px rgba(0,0,0,0.18); }
-    .corner-logo-badge { display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem; border-radius: 18px; border: 1px solid rgba(134,194,50,0.18); background: rgba(255,255,255,0.03); box-shadow: 0 12px 28px rgba(0,0,0,0.22); }
-    .corner-logo-badge img { width: 4rem; height: 4rem; object-fit: contain; display: block; filter: drop-shadow(0 8px 18px rgba(134,194,50,0.18)); }
     @media (max-width: 640px) {
       .brand-logo { height: 2.7rem; max-height: 60px; }
-      .corner-logo-badge { padding: 0.5rem; }
-      .corner-logo-badge img { width: 3.2rem; height: 3.2rem; }
     }
     .product-card { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; transition: all 0.3s ease-in-out; background: rgba(17,17,17,0.9); }
     .product-card:hover { transform: translateY(-4px); border-color: rgba(134,194,50,0.45); }
@@ -63,6 +59,13 @@
     .product-description::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1rem; background: linear-gradient(to bottom, rgba(46,50,54,0), #2E3236); transition: opacity 0.2s; }
     .product-description.expanded { max-height: 12rem; }
     .product-description.expanded::after { opacity: 0; }
+    .products-hero-card { position: relative; overflow: hidden; background: linear-gradient(90deg, rgba(46,50,54,0.94) 0%, rgba(46,50,54,0.86) 42%, rgba(46,50,54,0.48) 100%), url('assets/images/ourproducts.JPG'); background-color: rgba(46,50,54,0.88); background-size: cover; background-position: center right; }
+    .products-hero-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(134,194,50,0.05), rgba(34,38,41,0.12)); pointer-events: none; }
+    .products-hero-content { position: relative; z-index: 1; max-width: 26rem; }
+    @media (max-width: 640px) {
+      .products-hero-card { min-height: 15rem; background-position: 68% center; }
+      .products-hero-content { max-width: 14rem; }
+    }
   </style>
 </head>
 <body class="text-text-light">
@@ -120,13 +123,10 @@
 <!-- MAIN -->
 <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen">
   <!-- Header -->
-  <div class="mb-6 rounded-[1.75rem] border border-primary/10 bg-bg-card/70 p-5 sm:p-6 flex items-start justify-between gap-4">
-    <div>
+  <div class="products-hero-card mb-6 rounded-[1.75rem] border border-primary/10 p-5 sm:p-6 flex items-end min-h-[12rem] sm:min-h-[13rem]">
+    <div class="products-hero-content">
       <h1 class="text-3xl sm:text-4xl font-display text-primary">Our Products</h1>
-      <p class="text-text-mid mt-1">Browse our full selection of premium cannabis products.</p>
-    </div>
-    <div class="corner-logo-badge shrink-0" aria-hidden="true">
-      <img src="assets/images/logo.PNG" alt="">
+      <p class="text-text-light/80 mt-2 text-lg leading-relaxed">Browse our full selection of premium cannabis products.</p>
     </div>
   </div>
 
@@ -329,7 +329,6 @@
             ${p.description ? `<p class=\"text-xs text-text-mid mb-2 product-description\" onmouseenter=\"expandDescription(this)\" onmouseleave=\"collapseDescription(this)\" ontouchstart=\"expandDescription(this)\" ontouchend=\"collapseDescription(this)\" ontouchcancel=\"collapseDescription(this)\">${p.description}</p>` : ''}
             <div class="flex justify-between items-center mt-2">
               <p class="font-display text-base sm:text-lg font-bold text-primary">R${p.price}</p>
-              ${p.stock ? `<p class="text-xs text-text-mid">${p.stock} left</p>` : ''}
             </div>
             <button id="add-btn-${p.id}"
               onclick="addToCart({id:'${p.id}', name:'${p.name.replace(/'/g,"\\'")}', price: ${p.price}, imageUrl:'${(p.imageUrl||'').replace(/'/g,"\\'")}'})"
