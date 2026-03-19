@@ -26,8 +26,17 @@
     body { background:#222629; color:#F5F5F5; font-family:'Inter',sans-serif; }
     h1,h2,h3 { font-family:'Montserrat',sans-serif; }
     .navbar { background: rgba(34,38,41,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
-    .brand-logo { height: 2.35rem; width: auto; max-height: 50px; object-fit: contain; display: block; }
-    .brand-wrap { padding: 0.35rem 0.55rem; border-radius: 14px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); }
+    .brand-logo { height: 3rem; width: auto; max-height: 68px; object-fit: contain; display: block; }
+    .brand-wrap { padding: 0.45rem 0.75rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); box-shadow: 0 10px 24px rgba(0,0,0,0.18); }
+    .feature-logo { width: 5rem; height: 5rem; object-fit: contain; display: block; margin: 0 auto 1rem; filter: drop-shadow(0 12px 26px rgba(134,194,50,0.18)); }
+    .corner-logo-badge { display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem; border-radius: 18px; border: 1px solid rgba(134,194,50,0.18); background: rgba(255,255,255,0.03); box-shadow: 0 12px 28px rgba(0,0,0,0.22); }
+    .corner-logo-badge img { width: 4rem; height: 4rem; object-fit: contain; display: block; filter: drop-shadow(0 8px 18px rgba(134,194,50,0.18)); }
+    @media (max-width: 640px) {
+      .brand-logo { height: 2.7rem; max-height: 60px; }
+      .feature-logo { width: 4.25rem; height: 4.25rem; }
+      .corner-logo-badge { padding: 0.5rem; }
+      .corner-logo-badge img { width: 3.2rem; height: 3.2rem; }
+    }
     .btn-primary { background: var(--neon); color: #070707; font-weight: 700; border-radius: 999px; transition: all 0.3s ease-in-out; border: 1px solid rgba(134,194,50,0.85); }
     .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 0 20px rgba(134,194,50,0.3); }
     .btn-primary:disabled { background: #3a3a3a; border-color: #3a3a3a; color: #8f8f8f; cursor: not-allowed; }
@@ -58,7 +67,7 @@
 <!-- SUCCESS OVERLAY -->
 <div id="success-overlay">
   <div class="card rounded-3xl p-10 text-center max-w-md mx-4" style="background:#2E3236;border:1px solid rgba(134,194,50,0.2);">
-    <div class="text-6xl mb-4">🎉</div>
+    <img src="assets/images/logo.PNG" alt="Herbal Heights logo" class="feature-logo">
     <h2 class="text-3xl font-display text-primary mb-3">Thank you for your order!</h2>
     <p id="success-message" class="text-text-mid mb-6">Please message us on WhatsApp <strong>0724841636</strong> or Telegram <strong>@herbalhights</strong> with your receipt or order number for payment and delivery details.</p>
     <a href="products.html" class="btn-primary inline-block px-8 py-3">Continue Shopping</a>
@@ -66,8 +75,15 @@
 </div>
 
 <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-5xl">
-  <h1 class="text-3xl sm:text-4xl font-display text-primary mb-2">Checkout</h1>
-  <p class="text-text-mid mb-8">Complete your order and download your receipt. We will finalize payment and delivery over chat.</p>
+  <div class="mb-8 rounded-[1.75rem] border border-primary/10 bg-bg-card/70 p-5 sm:p-6 flex items-start justify-between gap-4">
+    <div>
+      <h1 class="text-3xl sm:text-4xl font-display text-primary mb-2">Checkout</h1>
+      <p class="text-text-mid">Complete your order and download your receipt. We will finalize payment and delivery over chat.</p>
+    </div>
+    <div class="corner-logo-badge shrink-0" aria-hidden="true">
+      <img src="assets/images/logo.PNG" alt="">
+    </div>
+  </div>
 
   <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
 
@@ -198,6 +214,26 @@
   });
 
 
+  function loadLogoDataUrl() {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          reject(new Error('Could not prepare the receipt logo.'));
+          return;
+        }
+        ctx.drawImage(img, 0, 0);
+        resolve(canvas.toDataURL('image/png'));
+      };
+      img.onerror = () => reject(new Error('Receipt logo failed to load. Please refresh and try again.'));
+      img.src = 'assets/images/logo.PNG';
+    });
+  }
+
   async function generateReceiptPdf({ orderId, totalAmount }) {
     const { jsPDF } = window.jspdf || {};
     if (!jsPDF) throw new Error('Receipt generator failed to load. Please refresh and try again.');
@@ -205,31 +241,61 @@
     const name = document.getElementById('cust-name').value.trim();
     const wa = document.getElementById('cust-whatsapp').value.trim();
     const date = new Date().toLocaleString('en-ZA');
+    const logoDataUrl = await loadLogoDataUrl();
 
-    doc.setFontSize(18);
-    doc.text('Herbal Hights Receipt', 14, 18);
+    doc.setFillColor(34, 38, 41);
+    doc.rect(0, 0, 210, 297, 'F');
+    doc.setDrawColor(134, 194, 50);
+    doc.setFillColor(46, 50, 54);
+    doc.roundedRect(12, 12, 186, 273, 8, 8, 'FD');
+    doc.addImage(logoDataUrl, 'PNG', 18, 18, 26, 26);
+
+    doc.setTextColor(134, 194, 50);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(21);
+    doc.text('Herbal Hights Receipt', 52, 28);
+
+    doc.setTextColor(245, 245, 245);
+    doc.setFont('helvetica', 'normal');
     doc.setFontSize(11);
-    doc.text(`Order #: ${orderId}`, 14, 28);
-    doc.text(`Date: ${date}`, 14, 34);
-    doc.text(`Customer: ${name}`, 14, 40);
-    doc.text(`WhatsApp: ${wa}`, 14, 46);
+    doc.text(`Order #: ${orderId}`, 18, 54);
+    doc.text(`Date: ${date}`, 18, 61);
+    doc.text(`Customer: ${name}`, 18, 68);
+    doc.text(`WhatsApp: ${wa}`, 18, 75);
 
-    let y = 58;
-    doc.text('Items', 14, y);
-    y += 6;
+    doc.setDrawColor(134, 194, 50);
+    doc.line(18, 84, 192, 84);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Items', 18, 94);
+    doc.text('Amount', 192, 94, { align: 'right' });
+
+    let y = 104;
+    doc.setFont('helvetica', 'normal');
     (cart || []).forEach((item) => {
       const line = `${item.name} x${item.qty} @ R${item.price}`;
-      doc.text(line.substring(0, 130), 14, y);
-      doc.text(`R${item.price * item.qty}`, 180, y, { align: 'right' });
-      y += 6;
+      doc.text(line.substring(0, 90), 18, y);
+      doc.text(`R${item.price * item.qty}`, 192, y, { align: 'right' });
+      y += 8;
     });
 
     y += 4;
-    doc.setFontSize(12);
-    doc.text(`Total: R${totalAmount}`, 180, y, { align: 'right' });
+    doc.setDrawColor(97, 137, 47);
+    doc.line(18, y, 192, y);
     y += 10;
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(13);
+    doc.setTextColor(245, 197, 66);
+    doc.text(`Total: R${totalAmount}`, 192, y, { align: 'right' });
+
+    y += 16;
+    doc.setFont('helvetica', 'normal');
     doc.setFontSize(10);
-    doc.text('Send this receipt/order number to WhatsApp 0724841636 or Telegram @herbalhights.', 14, y);
+    doc.setTextColor(179, 179, 179);
+    const footerLines = doc.splitTextToSize(
+      'Send this receipt or order number to WhatsApp 0724841636 or Telegram @herbalhights for payment methods and delivery details.',
+      168
+    );
+    doc.text(footerLines, 18, y);
 
     doc.save(`${orderId}-receipt.pdf`);
   }
