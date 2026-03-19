@@ -1,0 +1,14 @@
+{
+  "name": "netlify-functions",
+  "version": "2.0.0",
+  "description": "Netlify Functions for Herbal Heights — dual-purpose product upload and checkout backend",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.0.0",
+    "cloudinary": "^2.0.0",
+    "google-auth-library": "^9.0.0",
+    "google-spreadsheet": "^4.1.1"
+  }
+}

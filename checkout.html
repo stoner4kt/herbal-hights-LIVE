@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout | Herbal Hights</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#86C232", "primary-dark": "#61892F",
+            secondary: "#F5C542", "bg-dark": "#222629", "bg-card": "#2E3236", "bg-elevated": "#383C40",
+            "text-light": "#F5F5F5", "text-mid": "#B3B3B3",
+          },
+          fontFamily: { display: ["'Montserrat'", "sans-serif"], body: ["'Inter'", "sans-serif"] }
+        }
+      }
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --neon:#86C232; --amber:#F5C542; --line:rgba(255,255,255,0.1); }
+    body { background:#222629; color:#F5F5F5; font-family:'Inter',sans-serif; }
+    h1,h2,h3 { font-family:'Montserrat',sans-serif; }
+    .navbar { background: rgba(34,38,41,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .brand-logo { height: 2.35rem; width: auto; max-height: 50px; object-fit: contain; display: block; }
+    .brand-wrap { padding: 0.35rem 0.55rem; border-radius: 14px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); }
+    .btn-primary { background: var(--neon); color: #070707; font-weight: 700; border-radius: 999px; transition: all 0.3s ease-in-out; border: 1px solid rgba(134,194,50,0.85); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 0 20px rgba(134,194,50,0.3); }
+    .btn-primary:disabled { background: #3a3a3a; border-color: #3a3a3a; color: #8f8f8f; cursor: not-allowed; }
+    .field { width: 100%; border: 1px solid rgba(134,194,50,0.2); border-radius: 12px; padding: 12px 16px; font-size: 0.9rem; background: #383C40; transition: border 0.3s ease-in-out; outline: none; color: #F5F5F5; }
+    .field:focus { border-color: #86C232; box-shadow: 0 0 0 3px rgba(134,194,50,0.1); }
+    .card { background: #2E3236; border-radius: 20px; padding: 1.5rem; border: 1px solid rgba(134,194,50,0.12); }
+    .step-badge { width: 32px; height: 32px; border-radius: 50%; background: rgba(134,194,50,0.15); color: var(--neon); font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid rgba(134,194,50,0.3); }
+    #success-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.76); z-index: 100; display: none; align-items: center; justify-content: center; }
+    #success-overlay.show { display: flex; }
+  </style>
+</head>
+<body class="text-text-light">
+
+<!-- NAVBAR -->
+<header class="navbar sticky top-0 z-30">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <a href="index.html" class="flex items-center gap-2 brand-wrap">
+        <img src="assets/images/logo.PNG" alt="Herbal Heights logo" class="brand-logo">
+      </a>
+      <a href="products.html" class="border border-primary/30 text-primary rounded-full px-4 py-2 text-sm font-medium hover:bg-primary hover:text-black transition duration-300">
+        ← Back to Products
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- SUCCESS OVERLAY -->
+<div id="success-overlay">
+  <div class="card rounded-3xl p-10 text-center max-w-md mx-4" style="background:#2E3236;border:1px solid rgba(134,194,50,0.2);">
+    <div class="text-6xl mb-4">🎉</div>
+    <h2 class="text-3xl font-display text-primary mb-3">Thank you for your order!</h2>
+    <p id="success-message" class="text-text-mid mb-6">Please message us on WhatsApp <strong>0724841636</strong> or Telegram <strong>@herbalhights</strong> with your receipt or order number for payment and delivery details.</p>
+    <a href="products.html" class="btn-primary inline-block px-8 py-3">Continue Shopping</a>
+  </div>
+</div>
+
+<main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-5xl">
+  <h1 class="text-3xl sm:text-4xl font-display text-primary mb-2">Checkout</h1>
+  <p class="text-text-mid mb-8">Complete your order and download your receipt. We will finalize payment and delivery over chat.</p>
+
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+    <!-- LEFT: Order Details & Form (3 cols) -->
+    <div class="lg:col-span-3 space-y-6">
+
+      <!-- Order Summary -->
+      <div class="card">
+        <h2 class="text-xl font-display text-primary mb-4 flex items-center gap-2">
+          <span class="step-badge">1</span> Your Order
+        </h2>
+        <div id="order-items" class="space-y-3 mb-4">
+          <p class="text-text-mid text-sm">Loading cart…</p>
+        </div>
+        <div class="border-t border-primary/10 pt-3 flex justify-between items-center">
+          <span class="font-semibold">Total</span>
+          <span id="order-total" class="font-display text-2xl font-bold text-primary">R0</span>
+        </div>
+        <p class="text-xs text-text-mid mt-2">Cart is empty? <a href="products.html" class="text-primary underline">Go back to products</a></p>
+      </div>
+
+      <!-- Customer Details -->
+      <div class="card">
+        <h2 class="text-xl font-display text-primary mb-4 flex items-center gap-2">
+          <span class="step-badge">2</span> Your Details
+        </h2>
+        <div class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium mb-1">Full Name *</label>
+              <input type="text" id="cust-name" class="field" placeholder="Your name" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1">WhatsApp Number *</label>
+              <input type="tel" id="cust-whatsapp" class="field" placeholder="e.g. 0721234567" required>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Email Address *</label>
+            <input type="email" id="cust-email" class="field" placeholder="your@email.com" required>
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Delivery Address *</label>
+            <input type="text" id="cust-address" class="field" placeholder="Street, suburb, city" required>
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Special Instructions (optional)</label>
+            <textarea id="cust-notes" class="field" rows="2" placeholder="Any delivery notes or instructions…" style="background:#383C40;color:#F5F5F5;"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Receipt & Next Steps (2 cols) -->
+    <div class="lg:col-span-2 space-y-6">
+      <div class="card">
+        <h2 class="text-xl font-display text-primary mb-4 flex items-center gap-2">
+          <span class="step-badge">3</span> Receipt Required
+        </h2>
+        <p class="text-sm text-text-mid mb-3">A PDF receipt will be generated in your browser after checkout. You must download it and share it with us to confirm payment and delivery details.</p>
+        <div class="rounded-xl p-4 text-sm space-y-2" style="border:1px solid rgba(134,194,50,0.15);background:#383C40;color:#9DA1A5;">
+          <p><strong>WhatsApp:</strong> <a class="text-primary underline" href="https://wa.me/27724841636" target="_blank">0724841636</a></p>
+          <p><strong>Telegram:</strong> <a class="text-primary underline" href="https://t.me/herbalhights" target="_blank">@herbalhights</a></p>
+          <p class="text-xs">Share your receipt or order number for payment methods and delivery instructions.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="text-base font-display text-primary mb-3">Stay connected</h3>
+        <div class="flex flex-wrap gap-2">
+          <a href="https://t.me/herbalhights" target="_blank" class="btn-primary px-4 py-2 text-xs">Follow Telegram</a>
+          <a href="https://chat.whatsapp.com/DjXA45eYQIoGeIkDEIbuNe?mode=gi_t" target="_blank" class="btn-primary px-4 py-2 text-xs">Join WhatsApp Group</a>
+        </div>
+      </div>
+
+      <button id="submit-order-btn" onclick="submitOrder()" class="btn-primary w-full py-4 text-base" disabled>
+        Place Order & Download Receipt
+      </button>
+      <p id="submit-error" class="text-center text-red-500 text-sm hidden"></p>
+      <p class="text-xs text-text-mid text-center">By placing your order you confirm you are 18+ and comply with local laws.</p>
+    </div>
+  </div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
+<script src="firebase-config.js"></script>
+
+<script>
+  let cart = JSON.parse(localStorage.getItem('hh_cart') || '[]');
+
+  // Render order summary
+  function renderOrder() {
+    const container = document.getElementById('order-items');
+    if (cart.length === 0) {
+      container.innerHTML = '<p class="text-text-mid text-sm">Your cart is empty. <a href="products.html" class="text-primary underline">Go back to products</a></p>';
+      return;
+    }
+    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    container.innerHTML = cart.map(item => `
+      <div class="flex gap-3 items-center">
+        <img src="${item.imageUrl || 'https://placehold.co/50x50/2D6A2D/F5C518?text=P'}" class="w-12 h-12 object-cover rounded-lg flex-shrink-0" onerror="this.src='https://placehold.co/50x50/2D6A2D/F5C518?text=P'">
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium truncate">${item.name}</p>
+          <p class="text-xs text-text-mid">Qty: ${item.qty} × R${item.price}</p>
+        </div>
+        <p class="font-bold text-primary text-sm">R${item.price * item.qty}</p>
+      </div>`).join('');
+    document.getElementById('order-total').textContent = 'R' + total;
+  }
+
+  function checkFormReady() {
+    const name = document.getElementById('cust-name').value.trim();
+    const wa = document.getElementById('cust-whatsapp').value.trim();
+    const email = document.getElementById('cust-email').value.trim();
+    const addr = document.getElementById('cust-address').value.trim();
+    const hasCart = cart.length > 0;
+    document.getElementById('submit-order-btn').disabled = !(name && wa && email && addr && hasCart);
+  }
+
+  ['cust-name','cust-whatsapp','cust-email','cust-address'].forEach(id => {
+    document.getElementById(id).addEventListener('input', checkFormReady);
+  });
+
+
+  async function generateReceiptPdf({ orderId, totalAmount }) {
+    const { jsPDF } = window.jspdf || {};
+    if (!jsPDF) throw new Error('Receipt generator failed to load. Please refresh and try again.');
+    const doc = new jsPDF();
+    const name = document.getElementById('cust-name').value.trim();
+    const wa = document.getElementById('cust-whatsapp').value.trim();
+    const date = new Date().toLocaleString('en-ZA');
+
+    doc.setFontSize(18);
+    doc.text('Herbal Hights Receipt', 14, 18);
+    doc.setFontSize(11);
+    doc.text(`Order #: ${orderId}`, 14, 28);
+    doc.text(`Date: ${date}`, 14, 34);
+    doc.text(`Customer: ${name}`, 14, 40);
+    doc.text(`WhatsApp: ${wa}`, 14, 46);
+
+    let y = 58;
+    doc.text('Items', 14, y);
+    y += 6;
+    (cart || []).forEach((item) => {
+      const line = `${item.name} x${item.qty} @ R${item.price}`;
+      doc.text(line.substring(0, 130), 14, y);
+      doc.text(`R${item.price * item.qty}`, 180, y, { align: 'right' });
+      y += 6;
+    });
+
+    y += 4;
+    doc.setFontSize(12);
+    doc.text(`Total: R${totalAmount}`, 180, y, { align: 'right' });
+    y += 10;
+    doc.setFontSize(10);
+    doc.text('Send this receipt/order number to WhatsApp 0724841636 or Telegram @herbalhights.', 14, y);
+
+    doc.save(`${orderId}-receipt.pdf`);
+  }
+
+  async function submitOrder() {
+    const btn   = document.getElementById('submit-order-btn');
+    const errEl = document.getElementById('submit-error');
+    errEl.classList.add('hidden');
+    btn.disabled    = true;
+    btn.textContent = 'Submitting order…';
+
+    try {
+      const orderId      = 'HH-' + Date.now();
+      const customerName = document.getElementById('cust-name').value.trim();
+      const totalAmount  = cart.reduce((s, i) => s + i.price * i.qty, 0);
+
+      btn.textContent = 'Saving order…';
+
+      // Send everything to the Netlify function
+      const res  = await fetch('/.netlify/functions/save-data?action=checkout', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({
+          orderId,
+          customerName,
+          totalAmount,
+          items:        cart,
+          whatsapp:     document.getElementById('cust-whatsapp').value.trim(),
+          email:        document.getElementById('cust-email').value.trim(),
+          address:      document.getElementById('cust-address').value.trim(),
+          notes:        document.getElementById('cust-notes').value.trim()
+        }),
+      });
+
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || 'Order submission failed.');
+
+      await generateReceiptPdf({ orderId, totalAmount });
+
+      if (json.warning) {
+        console.warn('[Checkout]', json.warning);
+      }
+
+      // Clear cart and show success
+      localStorage.removeItem('hh_cart');
+      document.getElementById('success-message').innerHTML = `Please message us on WhatsApp <strong>0724841636</strong> or Telegram <strong>@herbalhights</strong> with your receipt or order number <strong>${orderId}</strong> for payment methods and delivery details.`;
+      document.getElementById('success-overlay').classList.add('show');
+
+    } catch (e) {
+      console.error(e);
+      errEl.textContent = 'Failed to submit order: ' + e.message;
+      errEl.classList.remove('hidden');
+      btn.disabled    = false;
+      btn.textContent = 'Place Order & Download Receipt';
+    }
+  }
+
+  renderOrder();
+</script>
+</body>
+</html>
