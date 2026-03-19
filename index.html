@@ -61,28 +61,63 @@
     .age-gate-card { background: rgba(46,50,54,0.96); border-radius: 24px; padding: 3rem 2.5rem; max-width: 440px; width: 90%; text-align: center; border: 1px solid var(--line); backdrop-filter: blur(20px); }
     .leaf-icon { width: 4.5rem; height: 4.5rem; margin: 0 auto 1rem; display: block; object-fit: contain; filter: drop-shadow(0 10px 24px rgba(134,194,50,0.18)); }
 
-    .hero-bg { background: linear-gradient(180deg, #0a0a0a 0%, #222629 100%); position: relative; overflow: hidden; }
+    .hero-bg {
+      background:
+        linear-gradient(180deg, rgba(10,10,10,0.72) 0%, rgba(34,38,41,0.94) 100%),
+        url('assets/images/headerbackground.JPG') center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+    }
     .hero-bg::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 30%, rgba(97,137,47,0.20) 0%, transparent 55%); }
     .hero-pattern { position: absolute; inset: 0; opacity: 0.4; background: radial-gradient(circle at 20% 40%, rgba(134,194,50,0.06) 0, transparent 55%); }
 
     .navbar { background: rgba(34,38,41,0.92); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
-    .brand-logo { height: 3.1rem; width: auto; max-height: 68px; object-fit: contain; display: block; }
+    .brand-logo { height: 3.6rem; width: auto; max-height: 78px; object-fit: contain; display: block; }
     .brand-wrap { padding: 0.45rem 0.8rem; border-radius: 16px; }
     .inline-logo { width: 1.35rem; height: 1.35rem; object-fit: contain; display: inline-block; filter: drop-shadow(0 4px 10px rgba(134,194,50,0.18)); }
-    .feature-logo { width: 5.5rem; height: 5.5rem; object-fit: contain; filter: drop-shadow(0 14px 30px rgba(134,194,50,0.18)); }
+    .feature-logo { width: 6.25rem; height: 6.25rem; object-fit: contain; filter: drop-shadow(0 14px 30px rgba(134,194,50,0.18)); }
     .bullet-logo { width: 1.1rem; height: 1.1rem; object-fit: contain; flex-shrink: 0; }
+    .section-image-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.75rem;
+      border: 1px solid rgba(134,194,50,0.16);
+      background: rgba(17,17,17,0.9);
+      min-height: 220px;
+    }
+    .section-image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .section-image-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.55));
+    }
+    .section-image-copy {
+      position: absolute;
+      left: 1.25rem;
+      right: 1.25rem;
+      bottom: 1.25rem;
+      z-index: 1;
+    }
     @media (max-width: 640px) {
-      .brand-logo { height: auto; max-height: 40px; }
+      .brand-logo { height: auto; max-height: 48px; }
       .brand-wrap { padding: 0.38rem 0.65rem; }
+      .feature-logo { width: 5.25rem; height: 5.25rem; }
+      .section-image-card { min-height: 180px; }
     }
     .glass-card, .product-card, .review-card { background: rgba(17,17,17,0.9); border-radius: 18px; box-shadow: none; }
     .glass-card { border: 1px solid rgba(134,194,50,0.1); }
     .product-card, .review-card { border: 1px solid var(--line); }
     .product-card { overflow: hidden; transition: all 0.3s ease-in-out; cursor: pointer; }
     .product-card:hover { transform: translateY(-6px); border-color: rgba(134,194,50,0.45); }
-    .product-card .badge { position: absolute; top: 10px; left: 10px; background: rgba(134,194,50,0.22); color: var(--neon); font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .product-card .badge { position: absolute; top: 10px; left: 10px; background: #F5C542; color: #000; font-size: 0.75rem; font-weight: 800; padding: 4px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 8px 22px rgba(0,0,0,0.22); }
     .out-of-stock { opacity: 0.58; }
-    .out-of-stock .badge { background: rgba(245,197,66,0.24); color: var(--amber); }
+    .out-of-stock .badge { background: #ef4444; color: #fff; }
 
     .btn-primary { background: var(--neon); color: #060606; font-weight: 700; border-radius: 999px; transition: all 0.3s ease-in-out; border: 1px solid rgba(134,194,50,0.85); }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(134,194,50,0.32); }
@@ -195,7 +230,7 @@
         <a href="products.html" class="btn-primary hero-primary-cta pulse-cta">Browse Products</a>
         <a href="#about" class="btn-outline px-8 py-4 text-lg">Our Story</a>
       </div>
-      <div class="flex gap-8 mt-12">
+      <div class="flex flex-wrap gap-4 sm:gap-8 mt-12">
         <div class="stat-badge rounded-xl px-4 py-3 text-center">
           <div class="text-2xl font-display text-secondary font-bold">100%</div>
           <div class="text-text-mid text-xs mt-1">Premium Quality</div>
@@ -224,6 +259,14 @@
       <p class="text-text-mid max-w-2xl mx-auto">Choose from our curated selection of favorites. Everything from edibles and chocolates to premium flower.</p>
     </div>
     <div class="divider mb-12"></div>
+
+    <div class="section-image-card mb-8 reveal">
+      <img src="assets/images/products.JPG" alt="Featured Herbal Hights products">
+      <div class="section-image-copy">
+        <p class="text-xs uppercase tracking-[0.2em] text-secondary font-semibold mb-2">Fresh Drops</p>
+        <h3 class="text-2xl sm:text-3xl font-display text-white">Premium picks, curated for every session.</h3>
+      </div>
+    </div>
 
     <div id="featured-grid" class="grid grid-cols-2 md:grid-cols-6 lg:grid-cols-8 gap-4 sm:gap-6 max-w-6xl mx-auto">
       <!-- Products loaded from Firebase -->
@@ -280,12 +323,13 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       <div class="reveal">
         <div class="aspect-square rounded-3xl overflow-hidden glass-card relative">
-          <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-10">
-            <img src="assets/images/logo.png" alt="Herbal Heights logo" class="feature-logo mb-5">
-            <h3 class="text-2xl font-display text-primary font-bold mb-2">Herbal Hights</h3>
-            <p class="text-text-mid">Where Relaxation Meets Quality</p>
+          <img src="assets/images/about.JPG" alt="Herbal Hights lifestyle and brand story" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+          <div class="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+            <img src="assets/images/logo.png" alt="Herbal Heights logo" class="feature-logo mb-4">
+            <h3 class="text-2xl font-display text-white font-bold mb-2">Herbal Hights</h3>
+            <p class="text-white/80">Where relaxation meets quality.</p>
           </div>
-          <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-yellow-400/10"></div>
         </div>
       </div>
       <div class="reveal">
