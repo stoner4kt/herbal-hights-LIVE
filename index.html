@@ -61,7 +61,13 @@
     .age-gate-card { background: rgba(46,50,54,0.96); border-radius: 24px; padding: 3rem 2.5rem; max-width: 440px; width: 90%; text-align: center; border: 1px solid var(--line); backdrop-filter: blur(20px); }
     .leaf-icon { width: 4.5rem; height: 4.5rem; margin: 0 auto 1rem; display: block; object-fit: contain; filter: drop-shadow(0 10px 24px rgba(134,194,50,0.18)); }
 
-    .hero-bg { background: linear-gradient(180deg, #0a0a0a 0%, #222629 100%); position: relative; overflow: hidden; }
+    .hero-bg {
+      background:
+        linear-gradient(180deg, rgba(10,10,10,0.72) 0%, rgba(34,38,41,0.94) 100%),
+        url('assets/images/headerbackground.JPG') center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+    }
     .hero-bg::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 30%, rgba(97,137,47,0.20) 0%, transparent 55%); }
     .hero-pattern { position: absolute; inset: 0; opacity: 0.4; background: radial-gradient(circle at 20% 40%, rgba(134,194,50,0.06) 0, transparent 55%); }
 
@@ -69,7 +75,7 @@
     .brand-logo { height: 3.1rem; width: auto; max-height: 68px; object-fit: contain; display: block; }
     .brand-wrap { padding: 0.45rem 0.8rem; border-radius: 16px; }
     .inline-logo { width: 1.35rem; height: 1.35rem; object-fit: contain; display: inline-block; filter: drop-shadow(0 4px 10px rgba(134,194,50,0.18)); }
-    .feature-logo { width: 5.5rem; height: 5.5rem; object-fit: contain; filter: drop-shadow(0 14px 30px rgba(134,194,50,0.18)); }
+    .feature-logo { width: 6.25rem; height: 6.25rem; object-fit: contain; filter: drop-shadow(0 14px 30px rgba(134,194,50,0.18)); }
     .bullet-logo { width: 1.1rem; height: 1.1rem; object-fit: contain; flex-shrink: 0; }
     @media (max-width: 640px) {
       .brand-logo { height: auto; max-height: 40px; }
@@ -80,9 +86,9 @@
     .product-card, .review-card { border: 1px solid var(--line); }
     .product-card { overflow: hidden; transition: all 0.3s ease-in-out; cursor: pointer; }
     .product-card:hover { transform: translateY(-6px); border-color: rgba(134,194,50,0.45); }
-    .product-card .badge { position: absolute; top: 10px; left: 10px; background: rgba(134,194,50,0.22); color: var(--neon); font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .product-card .badge { position: absolute; top: 10px; left: 10px; background: #F5C542; color: #000; font-size: 0.75rem; font-weight: 800; padding: 4px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 8px 22px rgba(0,0,0,0.22); }
     .out-of-stock { opacity: 0.58; }
-    .out-of-stock .badge { background: rgba(245,197,66,0.24); color: var(--amber); }
+    .out-of-stock .badge { background: #ef4444; color: #fff; }
 
     .btn-primary { background: var(--neon); color: #060606; font-weight: 700; border-radius: 999px; transition: all 0.3s ease-in-out; border: 1px solid rgba(134,194,50,0.85); }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(134,194,50,0.32); }
@@ -118,7 +124,7 @@
 <!-- AGE GATE -->
 <div id="age-gate">
   <div class="age-gate-card">
-    <img src="assets/images/logo.PNG" alt="Herbal Heights logo" class="leaf-icon">
+    <img src="assets/images/logo.png" alt="Herbal Heights logo" class="leaf-icon">
     <h1 class="text-3xl font-display mb-2 text-primary">Herbal Hights</h1>
     <p class="text-text-mid mb-6 text-sm leading-relaxed">This website contains cannabis products. By entering, you confirm you are 18 years or older and comply with all local laws.</p>
     <button onclick="passAgeGate()" class="btn-primary w-full py-3 text-lg mb-3">I am 18+ – Enter</button>
@@ -132,7 +138,7 @@
 <!-- MOBILE MENU -->
 <div id="mobile-menu" class="fixed top-0 right-0 w-72 h-full bg-bg-elevated z-50 p-6 shadow-2xl">
   <div class="flex justify-between items-center mb-8 brand-wrap">
-    <img src="assets/images/logo.PNG" alt="Herbal Heights logo" class="brand-logo">
+    <img src="assets/images/logo.png" alt="Herbal Heights logo" class="brand-logo">
     <button onclick="closeMenu()" class="text-text-light text-2xl">✕</button>
   </div>
   <nav class="space-y-4">
@@ -155,7 +161,7 @@
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <a href="index.html" class="flex items-center gap-2 flex-shrink-0 brand-wrap">
-        <img src="assets/images/logo.PNG" alt="Herbal Heights logo" class="brand-logo">
+        <img src="assets/images/logo.png" alt="Herbal Heights logo" class="brand-logo">
       </a>
 
       <nav class="hidden lg:flex gap-8">
@@ -195,7 +201,7 @@
         <a href="products.html" class="btn-primary hero-primary-cta pulse-cta">Browse Products</a>
         <a href="#about" class="btn-outline px-8 py-4 text-lg">Our Story</a>
       </div>
-      <div class="flex gap-8 mt-12">
+      <div class="flex flex-wrap gap-4 sm:gap-8 mt-12">
         <div class="stat-badge rounded-xl px-4 py-3 text-center">
           <div class="text-2xl font-display text-secondary font-bold">100%</div>
           <div class="text-text-mid text-xs mt-1">Premium Quality</div>
@@ -225,6 +231,14 @@
     </div>
     <div class="divider mb-12"></div>
 
+    <div class="section-image-card mb-8 reveal">
+      <img src="assets/images/products.JPG" alt="Featured Herbal Hights products">
+      <div class="section-image-copy">
+        <p class="text-xs uppercase tracking-[0.2em] text-secondary font-semibold mb-2">Fresh Drops</p>
+        <h3 class="text-2xl sm:text-3xl font-display text-white">Premium picks, curated for every session.</h3>
+      </div>
+    </div>
+
     <div id="featured-grid" class="grid grid-cols-2 md:grid-cols-6 lg:grid-cols-8 gap-4 sm:gap-6 max-w-6xl mx-auto">
       <!-- Products loaded from Firebase -->
       <div class="col-span-2 md:col-span-3 lg:col-span-4 text-center py-8 text-text-mid">
@@ -248,7 +262,7 @@
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="glass-card p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
       <div>
-        <h3 class="text-2xl font-display text-primary flex items-center gap-3"><img src="assets/images/logo.PNG" alt="Herbal Heights logo" class="inline-logo"> <span>Stay in the loop</span></h3>
+        <h3 class="text-2xl font-display text-primary flex items-center gap-3"><img src="assets/images/logo.png" alt="Herbal Heights logo" class="inline-logo"> <span>Stay in the loop</span></h3>
         <p class="text-text-mid text-sm">Follow us on Telegram and join the WhatsApp group for menu drops and promos.</p>
       </div>
       <div class="flex flex-wrap gap-2">
@@ -285,7 +299,6 @@
             <h3 class="text-2xl font-display text-primary font-bold mb-2">Herbal Hights</h3>
             <p class="text-text-mid">Where Relaxation Meets Quality</p>
           </div>
-          <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-yellow-400/10"></div>
         </div>
       </div>
       <div class="reveal">
@@ -298,10 +311,10 @@
           <div class="mt-6">
             <p class="font-semibold text-primary mb-3">Herbal Hights is for:</p>
             <ul class="space-y-1.5">
-              <li class="flex items-center gap-3"><img src="assets/images/logo.PNG" alt="Herbal Heights logo" class="bullet-logo"> Anyone seeking quality relaxation</li>
-              <li class="flex items-center gap-3"><img src="assets/images/logo.PNG" alt="Herbal Heights logo" class="bullet-logo"> Wellness-conscious consumers</li>
-              <li class="flex items-center gap-3"><img src="assets/images/logo.PNG" alt="Herbal Heights logo" class="bullet-logo"> Those who value premium, curated products</li>
-              <li class="flex items-center gap-3"><img src="assets/images/logo.PNG" alt="Herbal Heights logo" class="bullet-logo"> People who want calm without compromise</li>
+              <li class="flex items-center gap-3"><img src="assets/images/logo.png" alt="Herbal Heights logo" class="bullet-logo"> Anyone seeking quality relaxation</li>
+              <li class="flex items-center gap-3"><img src="assets/images/logo.png" alt="Herbal Heights logo" class="bullet-logo"> Wellness-conscious consumers</li>
+              <li class="flex items-center gap-3"><img src="assets/images/logo.png" alt="Herbal Heights logo" class="bullet-logo"> Those who value premium, curated products</li>
+              <li class="flex items-center gap-3"><img src="assets/images/logo.png" alt="Herbal Heights logo" class="bullet-logo"> People who want calm without compromise</li>
             </ul>
           </div>
         </div>
@@ -320,7 +333,7 @@
     <div class="grid grid-cols-2 md:grid-cols-3 gap-8 pb-8 border-b border-white/10">
       <div class="col-span-2 md:col-span-1">
         <div class="flex items-center gap-2 mb-3 brand-wrap w-fit">
-          <img src="assets/images/logo.PNG" alt="Herbal Heights logo" class="brand-logo">
+          <img src="assets/images/logo.png" alt="Herbal Heights logo" class="brand-logo">
         </div>
         <p class="text-white/60 text-sm">Elevated experiences, every time.</p>
       </div>
