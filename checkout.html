@@ -336,7 +336,7 @@
       await generateReceiptPdf({ orderId, totalAmount });
 
       if (json.warning) {
-        console.warn('[Checkout]', json.warning);
+        logger.warn('[Checkout]', json.warning);
       }
 
       // Clear cart and show success
@@ -345,7 +345,7 @@
       document.getElementById('success-overlay').classList.add('show');
 
     } catch (e) {
-      console.error(e);
+      logger.error(e);
       errEl.textContent = 'Failed to submit order: ' + e.message;
       errEl.classList.remove('hidden');
       btn.disabled    = false;

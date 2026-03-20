@@ -386,7 +386,7 @@
       allProducts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
       renderProducts();
     } catch (e) {
-      console.error(e);
+      logger.error(e);
       document.getElementById('products-grid').innerHTML = `<div class="col-span-full text-center py-8 text-red-500">Failed to load products. Please check your Firebase configuration.</div>`;
     }
   }

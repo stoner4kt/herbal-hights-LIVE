@@ -447,7 +447,7 @@
       document.getElementById('stat-orders').textContent = orders.length;
       document.getElementById('stat-revenue').textContent = 'R' + revenue;
       renderRecentOrders(orders.slice(0, 8));
-    } catch (e) { console.error(e); }
+    } catch (e) { logger.error(e); }
   }
 
   function renderRecentOrders(orders) {
@@ -497,7 +497,7 @@
           </td>
         </tr>`;
       }).join('');
-    } catch (e) { loading.textContent = 'Error loading products.'; console.error(e); }
+    } catch (e) { loading.textContent = 'Error loading products.'; logger.error(e); }
   }
 
   async function updateStock(productId, newStock) {
