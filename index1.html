@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Herbal Hights – Premium Cannabis & Edibles</title>
+  <meta name="description" content="Herbal Hights offers premium cannabis edibles, flower, and infused treats. Order now for elevated experiences." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#86C232",
+            "primary-dark": "#61892F",
+            "primary-soft": "rgba(134,194,50,0.1)",
+            secondary: "#F5C542",
+            "bg-dark": "#222629",
+            "bg-card": "#2E3236",
+            "bg-elevated": "#383C40",
+            "text-light": "#F5F5F5",
+            "text-mid": "#B3B3B3",
+          },
+          fontFamily: {
+            display: ["'Montserrat'", "sans-serif"],
+            body: ["'Inter'", "sans-serif"],
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root { --bg:#222629; --card:#2E3236; --elevated:#383C40; --neon:#86C232; --green-deep:#61892F; --amber:#F5C542; --line:rgba(134,194,50,0.15); }
+
+    body {
+      background: var(--bg);
+      color: #F5F5F5;
+      font-family: 'Inter', sans-serif;
+      position: relative;
+    }
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      width: 45vw;
+      height: 45vw;
+      border-radius: 999px;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: -1;
+    }
+    body::before { top: -12rem; left: -10rem; background: rgba(97,137,47,0.12); }
+    body::after { bottom: -14rem; right: -8rem; background: rgba(134,194,50,0.06); }
+    h1, h2, h3 { font-family: 'Montserrat', sans-serif; letter-spacing: 0.01em; }
+
+    #age-gate { position: fixed; inset: 0; background: radial-gradient(circle at 20% 20%, rgba(97,137,47,0.2), transparent 48%), #222629; z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease; }
+    #age-gate.fade-out { opacity: 0; pointer-events: none; }
+    .age-gate-card { background: rgba(46,50,54,0.96); border-radius: 24px; padding: 3rem 2.5rem; max-width: 440px; width: 90%; text-align: center; border: 1px solid var(--line); backdrop-filter: blur(20px); }
+    .leaf-icon { width: 4.5rem; height: 4.5rem; margin: 0 auto 1rem; display: block; object-fit: contain; filter: drop-shadow(0 10px 24px rgba(134,194,50,0.18)); }
+
+    .hero-bg {
+      background:
+        linear-gradient(180deg, rgba(10,10,10,0.72) 0%, rgba(34,38,41,0.94) 100%),
+        url('assets/images/headerbackground.JPG') center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 30%, rgba(97,137,47,0.20) 0%, transparent 55%); }
+    .hero-pattern { position: absolute; inset: 0; opacity: 0.4; background: radial-gradient(circle at 20% 40%, rgba(134,194,50,0.06) 0, transparent 55%); }
+
+    .navbar { background: rgba(34,38,41,0.92); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+    .brand-logo { height: 3.6rem; width: auto; max-height: 78px; object-fit: contain; display: block; }
+    .brand-wrap { padding: 0.45rem 0.8rem; border-radius: 16px; }
+    .inline-logo { width: 1.35rem; height: 1.35rem; object-fit: contain; display: inline-block; filter: drop-shadow(0 4px 10px rgba(134,194,50,0.18)); }
+    .feature-logo { width: 6.25rem; height: 6.25rem; object-fit: contain; filter: drop-shadow(0 14px 30px rgba(134,194,50,0.18)); }
+    .bullet-logo { width: 1.1rem; height: 1.1rem; object-fit: contain; flex-shrink: 0; }
+    .section-image-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.75rem;
+      border: 1px solid rgba(134,194,50,0.16);
+      background: rgba(17,17,17,0.9);
+      min-height: 220px;
+    }
+    .section-image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .section-image-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.55));
+    }
+    .section-image-copy {
+      position: absolute;
+      left: 1.25rem;
+      right: 1.25rem;
+      bottom: 1.25rem;
+      z-index: 1;
+    }
+    @media (max-width: 640px) {
+      .brand-logo { height: auto; max-height: 48px; }
+      .brand-wrap { padding: 0.38rem 0.65rem; }
+      .feature-logo { width: 5.25rem; height: 5.25rem; }
+      .section-image-card { min-height: 180px; }
+    }
+    .glass-card, .product-card, .review-card { background: rgba(17,17,17,0.9); border-radius: 18px; box-shadow: none; }
+    .glass-card { border: 1px solid rgba(134,194,50,0.1); }
+    .product-card, .review-card { border: 1px solid var(--line); }
+    .product-card { overflow: hidden; transition: all 0.3s ease-in-out; cursor: pointer; }
+    .product-card:hover { transform: translateY(-6px); border-color: rgba(134,194,50,0.45); }
+    .product-card .badge { position: absolute; top: 10px; left: 10px; background: #F5C542; color: #000; font-size: 0.75rem; font-weight: 800; padding: 4px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 8px 22px rgba(0,0,0,0.22); }
+    .out-of-stock { opacity: 0.58; }
+    .out-of-stock .badge { background: #ef4444; color: #fff; }
+
+    .btn-primary { background: var(--neon); color: #060606; font-weight: 700; border-radius: 999px; transition: all 0.3s ease-in-out; border: 1px solid rgba(134,194,50,0.85); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(134,194,50,0.32); }
+    .btn-outline { background: transparent; color: #f5f5f5; font-weight: 600; border-radius: 999px; border: 1px solid var(--line); transition: all 0.3s ease-in-out; }
+    .btn-outline:hover { border-color: rgba(134,194,50,0.4); color: var(--neon); }
+
+    #cart-drawer { transition: transform 0.3s ease-in-out; background: rgba(14,14,14,0.98); border-left: 1px solid var(--line); }
+    #cart-drawer.open { transform: translateX(0) !important; }
+    #mobile-menu { transform: translateX(100%); transition: transform 0.3s ease-in-out; background: rgba(12,12,12,0.98); border-left: 1px solid var(--line); }
+    #mobile-menu.open { transform: translateX(0); }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(134,194,50,0.35), transparent); }
+    .review-card { border-left: 3px solid rgba(134,194,50,0.5); background: #2E3236; }
+    .stat-badge { background: rgba(255,255,255,0.02); border: 1px solid var(--line); }
+    .pulse-cta { animation: none; }
+    .hero-primary-cta { font-size: 1.2rem; font-weight: 800; padding: 1.1rem 2.5rem; }
+    .product-media { aspect-ratio: 1 / 1; overflow: hidden; }
+    .product-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.35s ease; }
+    .product-card:hover .product-media img { transform: scale(1.04); }
+    #float-cart { position: fixed; bottom: 6.5rem; right: 1rem; z-index: 50; }
+    @media (min-width: 1024px) { #float-cart { bottom: 2rem; right: 1.5rem; } }
+    #wa-btn { position: fixed; bottom: 1rem; right: 1rem; z-index: 50; }
+    @media (max-width: 1023px) {
+      #float-cart { bottom: 5.75rem; right: 1rem; }
+      #wa-btn { bottom: 1rem; right: 1rem; }
+    }
+  </style>
+</head>
+<body class="text-text-light">
+
+<!-- AGE GATE -->
+<div id="age-gate">
+  <div class="age-gate-card">
+    <img src="assets/images/logo.png" alt="Herbal Heights logo" class="leaf-icon">
+    <h1 class="text-3xl font-display mb-2 text-primary">Herbal Hights</h1>
+    <p class="text-text-mid mb-6 text-sm leading-relaxed">This website contains cannabis products. By entering, you confirm you are 18 years or older and comply with all local laws.</p>
+    <button onclick="passAgeGate()" class="btn-primary w-full py-3 text-lg mb-3">I am 18+ – Enter</button>
+    <p class="text-xs text-text-mid/60">By clicking, you agree to our terms and confirm your age.</p>
+  </div>
+</div>
+
+<!-- MOBILE MENU BACKDROP -->
+<div id="menu-backdrop" class="fixed inset-0 bg-black/50 z-40 hidden" onclick="closeMenu()"></div>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu" class="fixed top-0 right-0 w-72 h-full bg-bg-elevated z-50 p-6 shadow-2xl">
+  <div class="flex justify-between items-center mb-8 brand-wrap">
+    <img src="assets/images/logo.png" alt="Herbal Heights logo" class="brand-logo">
+    <button onclick="closeMenu()" class="text-text-light text-2xl">✕</button>
+  </div>
+  <nav class="space-y-4">
+    <a href="#hero" onclick="closeMenu()" class="block text-lg font-medium text-text-light hover:text-primary">Home</a>
+    <a href="products.html" class="block text-lg font-medium text-text-light hover:text-primary">Products</a>
+    <a href="#reviews" onclick="closeMenu()" class="block text-lg font-medium text-text-light hover:text-primary">Reviews</a>
+    <a href="#about" onclick="closeMenu()" class="block text-lg font-medium text-text-light hover:text-primary">Our Story</a>
+    <a href="products.html" class="block btn-primary text-center py-2 mt-4">Shop Now</a>
+  </nav>
+  <div class="mt-8 pt-6 border-t border-primary/20 space-y-3">
+    <a href="https://wa.me/27000000000" target="_blank" class="flex items-center gap-2 text-sm text-primary hover:text-primary-dark">
+      <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M20.52 3.48A11.91 11.91 0 0012.07 0C5.44 0 .04 5.4.04 12.03c0 2.12.55 4.18 1.6 6.01L0 24l6.15-1.61a12.03 12.03 0 005.92 1.51h.01c6.63 0 12.03-5.4 12.03-12.03 0-3.21-1.25-6.23-3.59-8.39z"/></svg>
+      WhatsApp Us
+    </a>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header class="navbar sticky top-0 z-30">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <a href="index.html" class="flex items-center gap-2 flex-shrink-0 brand-wrap">
+        <img src="assets/images/logo.png" alt="Herbal Heights logo" class="brand-logo">
+      </a>
+
+      <nav class="hidden lg:flex gap-8">
+        <a href="#hero" class="font-medium text-text-mid hover:text-primary transition duration-300">Home</a>
+        <a href="products.html" class="font-medium text-text-mid hover:text-primary transition duration-300">Products</a>
+        <a href="#reviews" class="font-medium text-text-mid hover:text-primary transition duration-300">Reviews</a>
+        <a href="#about" class="font-medium text-text-mid hover:text-primary transition duration-300">Our Story</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="products.html" class="hidden lg:inline-block btn-primary px-5 py-2 text-sm">Shop Now</a>
+        <button onclick="toggleMenu()" class="lg:hidden p-2 text-primary">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero" class="hero-bg min-h-screen flex items-center relative">
+  <div class="hero-pattern"></div>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+    <div class="max-w-3xl relative">
+      <div class="inline-flex items-center gap-2 text-primary rounded-full px-4 py-1 text-sm font-medium mb-6 border border-primary/40" style="background:rgba(134,194,50,0.1);">
+        Premium Cannabis & Edibles
+      </div>
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-display text-text-light leading-tight mb-6">
+        Elevated<br><span class="text-secondary">Experiences.</span><br>Every Time.
+      </h1>
+      <p class="text-xl text-text-mid max-w-xl mb-10 leading-relaxed">
+        Curated selection of premium flower, delicious edibles, and infused treats. Discover your perfect dose with Herbal Hights.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="products.html" class="btn-primary hero-primary-cta pulse-cta">Browse Products</a>
+        <a href="#about" class="btn-outline px-8 py-4 text-lg">Our Story</a>
+      </div>
+      <div class="flex flex-wrap gap-4 sm:gap-8 mt-12">
+        <div class="stat-badge rounded-xl px-4 py-3 text-center">
+          <div class="text-2xl font-display text-secondary font-bold">100%</div>
+          <div class="text-text-mid text-xs mt-1">Premium Quality</div>
+        </div>
+        <div class="stat-badge rounded-xl px-4 py-3 text-center">
+          <div class="text-2xl font-display text-secondary font-bold">Fast</div>
+          <div class="text-text-mid text-xs mt-1">Delivery</div>
+        </div>
+        <div class="stat-badge rounded-xl px-4 py-3 text-center">
+          <div class="text-2xl font-display text-secondary font-bold">Secure</div>
+          <div class="text-text-mid text-xs mt-1">Payments</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Decorative circles -->
+  <div class="absolute right-0 top-1/2 -translate-y-1/2 w-80 h-80 rounded-full opacity-15" style="background: radial-gradient(circle, rgba(134,194,50,0.4), transparent)"></div>
+  <div class="absolute right-20 bottom-20 w-40 h-40 rounded-full opacity-8" style="background: rgba(97,137,47,0.3)"></div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section id="products" class="py-20">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 reveal">
+      <h2 class="text-4xl font-display text-primary mb-4">Our Menu Highlights</h2>
+      <p class="text-text-mid max-w-2xl mx-auto">Choose from our curated selection of favorites. Everything from edibles and chocolates to premium flower.</p>
+    </div>
+    <div class="divider mb-12"></div>
+
+    <div class="section-image-card mb-8 reveal">
+      <img src="assets/images/products.JPG" alt="Featured Herbal Hights products">
+      <div class="section-image-copy">
+        <p class="text-xs uppercase tracking-[0.2em] text-secondary font-semibold mb-2">Fresh Drops</p>
+        <h3 class="text-2xl sm:text-3xl font-display text-white">Premium picks, curated for every session.</h3>
+      </div>
+    </div>
+
+    <div id="featured-grid" class="grid grid-cols-2 md:grid-cols-6 lg:grid-cols-8 gap-4 sm:gap-6 max-w-6xl mx-auto">
+      <!-- Products loaded from Firebase -->
+      <div class="col-span-2 md:col-span-3 lg:col-span-4 text-center py-8 text-text-mid">
+        <div class="inline-block w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mb-3"></div>
+        <p>Loading products…</p>
+      </div>
+    </div>
+
+    <div class="text-center mt-12 reveal">
+      <a href="products.html" id="view-all-btn" class="btn-primary px-10 py-4 text-lg inline-block">
+        View All Products →
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+
+<section class="py-10">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="glass-card p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <h3 class="text-2xl font-display text-primary flex items-center gap-3"><img src="assets/images/logo.png" alt="Herbal Heights logo" class="inline-logo"> <span>Stay in the loop</span></h3>
+        <p class="text-text-mid text-sm">Follow us on Telegram and join the WhatsApp group for menu drops and promos.</p>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <a href="https://t.me/herbalhights" target="_blank" class="btn-primary px-4 py-2 text-sm">Telegram</a>
+        <a href="https://chat.whatsapp.com/DjXA45eYQIoGeIkDEIbuNe?mode=gi_t" target="_blank" class="btn-primary px-4 py-2 text-sm">WhatsApp Group</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="py-20">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+    <div class="text-center mb-12 reveal">
+      <h2 class="text-4xl font-display text-primary mb-4">What Our Customers Say</h2>
+      <p class="text-text-mid">Real reviews from real customers.</p>
+    </div>
+    <div id="reviews-layout">
+      <p class="text-center text-text-mid py-8">Loading reviews…</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about" class="py-20">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div class="reveal">
+        <div class="aspect-square rounded-3xl overflow-hidden glass-card relative">
+          <img src="assets/images/about.JPG" alt="Herbal Hights lifestyle and brand story" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+          <div class="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+            <img src="assets/images/logo.png" alt="Herbal Heights logo" class="feature-logo mb-4">
+            <h3 class="text-2xl font-display text-white font-bold mb-2">Herbal Hights</h3>
+            <p class="text-white/80">Where relaxation meets quality.</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <span class="text-xs uppercase tracking-widest text-primary/60 font-medium">Our Story</span>
+        <h2 class="text-4xl font-display text-primary mt-2 mb-6">Herbal Hights – Where Relaxation Meets the Clouds</h2>
+        <div class="space-y-4 text-text-mid leading-relaxed">
+          <p>We created Herbal Hights for the dreamers, the hustlers, and anyone who needs a moment of calm in a fast-paced world. Our passion is connecting you with the finest cannabis products.</p>
+          <p>Whether you're dealing with stress, seeking relaxation, or simply enjoying the experience — we've got the perfect product for you. From premium flower to artisan edibles, everything is hand-picked for quality.</p>
+          <p>Our mission: elevated experiences, every time. Real vibes. Soft luxury. Good energy.</p>
+          <div class="mt-6">
+            <p class="font-semibold text-primary mb-3">Herbal Hights is for:</p>
+            <ul class="space-y-1.5">
+              <li class="flex items-center gap-3"><img src="assets/images/logo.png" alt="Herbal Heights logo" class="bullet-logo"> Anyone seeking quality relaxation</li>
+              <li class="flex items-center gap-3"><img src="assets/images/logo.png" alt="Herbal Heights logo" class="bullet-logo"> Wellness-conscious consumers</li>
+              <li class="flex items-center gap-3"><img src="assets/images/logo.png" alt="Herbal Heights logo" class="bullet-logo"> Those who value premium, curated products</li>
+              <li class="flex items-center gap-3"><img src="assets/images/logo.png" alt="Herbal Heights logo" class="bullet-logo"> People who want calm without compromise</li>
+            </ul>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-4 mt-8">
+          <a href="products.html" class="btn-primary px-8 py-3">Browse Menu</a>
+          <a href="#reviews" class="btn-outline px-8 py-3">Read Reviews</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="pt-12 pb-6 bg-[#1E2124] border-t border-white/10">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-8 pb-8 border-b border-white/10">
+      <div class="col-span-2 md:col-span-1">
+        <div class="flex items-center gap-2 mb-3 brand-wrap w-fit">
+          <img src="assets/images/logo.png" alt="Herbal Heights logo" class="brand-logo">
+        </div>
+        <p class="text-white/60 text-sm">Elevated experiences, every time.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="products.html" class="text-white/60 hover:text-secondary transition">Products</a></li>
+          <li><a href="#reviews" class="text-white/60 hover:text-secondary transition">Reviews</a></li>
+          <li><a href="#about" class="text-white/60 hover:text-secondary transition">Our Story</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-4">Connect</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://wa.me/27000000000" target="_blank" class="text-white/60 hover:text-secondary transition">WhatsApp</a></li>
+          <li><a href="#" class="text-white/60 hover:text-secondary transition">Instagram</a></li>
+          <li><a href="#" class="text-white/60 hover:text-secondary transition">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-6 text-center text-white/40 text-sm">
+      <p>&copy; <span id="year"></span> Herbal Hights. All rights reserved. | For adults 18+ only.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FAB -->
+<a id="wa-btn" href="https://wa.me/27000000000" target="_blank"
+   class="w-14 h-14 btn-primary w-14 h-14 rounded-full flex items-center justify-center active:scale-95 transition"
+   aria-label="Chat on WhatsApp">
+  <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M20.52 3.48A11.91 11.91 0 0012.07 0C5.44 0 .04 5.4.04 12.03c0 2.12.55 4.18 1.6 6.01L0 24l6.15-1.61a12.03 12.03 0 005.92 1.51h.01c6.63 0 12.03-5.4 12.03-12.03 0-3.21-1.25-6.23-3.59-8.39z"/></svg>
+</a>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
+<script src="firebase-config.js"></script>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Age Gate
+  function passAgeGate() {
+    localStorage.setItem('hh_age_verified', 'true');
+    const gate = document.getElementById('age-gate');
+    gate.classList.add('fade-out');
+    setTimeout(() => gate.style.display = 'none', 500);
+  }
+  if (localStorage.getItem('hh_age_verified') === 'true') {
+    document.getElementById('age-gate').style.display = 'none';
+  }
+
+  // Mobile Menu
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+    document.getElementById('menu-backdrop').classList.toggle('hidden');
+  }
+  function closeMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.getElementById('menu-backdrop').classList.add('hidden');
+  }
+
+  // Scroll Reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // Load Featured Products
+  async function loadFeaturedProducts() {
+    try {
+      const snap = await db.collection('products').where('stock', '>', 0).limit(8).get();
+      const grid = document.getElementById('featured-grid');
+      if (snap.empty) {
+        grid.innerHTML = '<div class="col-span-2 md:col-span-3 lg:col-span-4 text-center py-8 text-text-mid"><p>No products available yet. Check back soon!</p></div>';
+        return;
+      }
+      grid.innerHTML = '';
+      snap.forEach(doc => {
+        const p = doc.data();
+        const inStock = p.stock > 0;
+        grid.innerHTML += `
+          <div class="product-card ${!inStock ? 'out-of-stock' : ''} group">
+            <div class="relative product-media">
+              <img src="${p.imageUrl || 'https://placehold.co/400x300/2D6A2D/F5C518?text=' + encodeURIComponent(p.name)}"
+                   alt="${p.name}" onerror="this.src='https://placehold.co/400x300/2D6A2D/F5C518?text=Product'">
+              <span class="badge">${inStock ? 'In Stock' : 'Sold Out'}</span>
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-text-light text-sm leading-tight mb-1">${p.name}</h3>
+              <p class="text-xs text-text-mid mb-2 line-clamp-2">${p.description || ''}</p>
+              <p class="price font-display text-lg font-extrabold text-secondary">R${p.price}</p>
+            </div>
+          </div>`;
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  // Load Reviews
+  function renderReviewCard(r) {
+    const stars = '★'.repeat(r.rating || 5) + '☆'.repeat(5 - (r.rating || 5));
+    const date = r.createdAt?.toDate ? r.createdAt.toDate().toLocaleDateString('en-ZA') : '';
+    return `
+      <div class="review-card bg-bg-elevated rounded-2xl p-5 shadow-sm">
+        <div class="flex justify-between items-start mb-3">
+          <p class="font-semibold text-primary">${escHtml(r.name || 'Customer')}</p>
+          <span class="text-yellow-500 text-sm">${stars}</span>
+        </div>
+        <p class="text-text-mid text-sm leading-relaxed">${escHtml(r.comment || '')}</p>
+        ${date ? `<p class="text-xs text-text-mid/50 mt-3">${date}</p>` : ''}
+      </div>`;
+  }
+
+  function escHtml(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  async function loadReviews() {
+    const host = document.getElementById('reviews-layout');
+    try {
+      const snap = await db.collection('reviews').orderBy('createdAt', 'desc').limit(10).get();
+      if (snap.empty) {
+        host.innerHTML = renderReviewFormBlock();
+        bindReviewForm();
+        return;
+      }
+      let cards = '';
+      snap.forEach(d => { cards += renderReviewCard(d.data()); });
+      host.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">${cards}</div>
+        <div class="max-w-xl mx-auto">${renderReviewFormBlock()}</div>`;
+      bindReviewForm();
+    } catch (e) {
+      host.innerHTML = '<p class="text-center text-red-500">Failed to load reviews.</p>';
+    }
+  }
+
+  function renderReviewFormBlock() {
+    return `
+      <div class="bg-bg-elevated rounded-2xl p-6 shadow-md border border-primary/10">
+        <h3 class="text-xl font-display text-primary mb-5 text-center">Leave a Review</h3>
+        <div id="review-form">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div><label class="block text-sm font-medium mb-1">Your Name</label>
+            <input type="text" id="r-name" class="w-full border border-primary/20 rounded-xl p-3 text-sm focus:outline-none focus:border-primary" style="background:#383C40;color:#F5F5F5;" /></div>
+            <div><label class="block text-sm font-medium mb-1">Rating</label>
+            <select id="r-rating" class="w-full border border-primary/20 rounded-xl p-3 text-sm focus:outline-none focus:border-primary" style="background:#383C40;color:#F5F5F5;">
+              <option value="">Select…</option>
+              <option value="5">★★★★★ Excellent</option>
+              <option value="4">★★★★ Good</option>
+              <option value="3">★★★ Average</option>
+              <option value="2">★★ Poor</option>
+              <option value="1">★ Terrible</option>
+            </select></div>
+          </div>
+          <div class="mb-4"><label class="block text-sm font-medium mb-1">Your Comment</label>
+          <textarea id="r-comment" rows="3" placeholder="Tell us about your experience…"
+            class="w-full border border-primary/20 rounded-xl p-3 text-sm focus:outline-none focus:border-primary" style="background:#383C40;color:#F5F5F5;"></textarea></div>
+          <button id="submit-review" class="btn-primary w-full py-3">Submit Review</button>
+          <p id="review-msg" class="text-center text-sm mt-3 hidden"></p>
+        </div>
+      </div>`;
+  }
+
+  function bindReviewForm() {
+    document.getElementById('submit-review')?.addEventListener('click', async () => {
+      const name = document.getElementById('r-name')?.value.trim();
+      const rating = parseInt(document.getElementById('r-rating')?.value);
+      const comment = document.getElementById('r-comment')?.value.trim();
+      const msg = document.getElementById('review-msg');
+      if (!name || !rating || !comment) {
+        msg.textContent = 'Please fill out all fields.';
+        msg.className = 'text-center text-sm mt-3 text-red-500';
+        msg.classList.remove('hidden'); return;
+      }
+      document.getElementById('submit-review').textContent = 'Submitting…';
+      document.getElementById('submit-review').disabled = true;
+      try {
+        await db.collection('reviews').add({ name, rating, comment, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+        msg.textContent = 'Thank you! Your review has been submitted.';
+        msg.className = 'text-center text-sm mt-3 text-green-600';
+        msg.classList.remove('hidden');
+        setTimeout(() => loadReviews(), 1500);
+      } catch (e) {
+        msg.textContent = 'Failed to submit. Try again.';
+        msg.className = 'text-center text-sm mt-3 text-red-500';
+        msg.classList.remove('hidden');
+      }
+      document.getElementById('submit-review').textContent = 'Submit Review';
+      document.getElementById('submit-review').disabled = false;
+    });
+  }
+
+  loadFeaturedProducts();
+  loadReviews();
+</script>
+</body>
+</html>
