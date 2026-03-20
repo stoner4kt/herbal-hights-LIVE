@@ -1,0 +1,17 @@
+{
+  "name": "Herbal Hights",
+  "short_name": "Herbal Hights",
+  "description": "Premium cannabis, edibles, and curated menu browsing for adults 18+.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#222629",
+  "theme_color": "#222629",
+  "icons": [
+    {
+      "src": "/assets/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

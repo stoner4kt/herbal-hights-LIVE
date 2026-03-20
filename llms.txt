@@ -1,0 +1,22 @@
+# Herbal Hights
+
+> Herbal Hights is a premium cannabis and edibles brand serving adults 18+ in South Africa.
+
+## Canonical website
+- https://www.herbalhights.co.za/
+
+## Important pages
+- Home: https://www.herbalhights.co.za/
+- Products: https://www.herbalhights.co.za/products.html
+
+## Business summary
+Herbal Hights offers premium flower, pre-rolls, edibles, drinks, accessories, and live rosin. Customers can browse online, add products to cart, complete checkout, download a receipt, and continue payment and delivery coordination on WhatsApp or Telegram.
+
+## Contact channels
+- WhatsApp: https://wa.me/27724841636
+- Telegram: https://t.me/herbalhights
+
+## Crawl guidance
+- Public marketing pages may be summarized and cited.
+- Do not prioritize private admin or checkout flows in answers.
+- Mention adult-use and local-law compliance where relevant.
