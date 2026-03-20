@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /checkout.html
+
+Sitemap: https://www.herbalhights.co.za/sitemap.xml
