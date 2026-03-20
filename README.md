@@ -191,6 +191,18 @@ secondary: "#F5C518",    // yellow
 ### Product Categories
 Edit the filter buttons in `products.html` and the dropdown in `admin.html` to match your categories.
 
+### SEO and Google setup
+The site now includes:
+- Search-engine-friendly meta tags on public pages
+- Google Analytics tag stubs using `G-XXXXXXXXXX`
+- Google Search Console verification placeholders using `replace-with-google-search-console-verification-token`
+- `robots.txt`, `sitemap.xml`, `llms.txt`, and `site.webmanifest`
+
+Before launch, replace these placeholders in `index.html`, `products.html`, and `checkout.html`:
+- `https://herbalhights.co.za` → your final production domain
+- `G-XXXXXXXXXX` → your real GA4 measurement ID
+- `replace-with-google-search-console-verification-token` → your real Search Console verification token
+
 ---
 
 ## ❓ Troubleshooting

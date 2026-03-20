@@ -2,3 +2,24 @@
   command   = "cd netlify/functions && npm install"
   publish   = "."
   functions = "netlify/functions"
+
+[[redirects]]
+  from = "https://www.herbalhights.co.za/*"
+  to = "https://herbalhights.co.za/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+[[headers]]
+  for = "/admin.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive, nosnippet"
+
+[[headers]]
+  for = "/checkout.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow, noarchive, nosnippet"
