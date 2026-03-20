@@ -199,7 +199,7 @@ The site now includes:
 - `robots.txt`, `sitemap.xml`, `llms.txt`, and `site.webmanifest`
 
 Before launch, replace these placeholders in `index.html`, `products.html`, and `checkout.html`:
-- `https://herbalhights.co.za` → your final production domain
+- `https://www.herbalhights.co.za` → your final production domain
 - `G-XXXXXXXXXX` → your real GA4 measurement ID
 - `replace-with-google-search-console-verification-token` → your real Search Console verification token
 

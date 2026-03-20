@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin.html
 Disallow: /checkout.html
 
-Sitemap: https://herbalhights.co.za/sitemap.xml
+Sitemap: https://www.herbalhights.co.za/sitemap.xml
