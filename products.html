@@ -30,13 +30,15 @@
     .brand-wrap { padding: 0.45rem 0.75rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); box-shadow: 0 10px 24px rgba(0,0,0,0.18); }
     .corner-logo-badge { display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem; border-radius: 18px; border: 1px solid rgba(134,194,50,0.18); background: rgba(255,255,255,0.03); box-shadow: 0 12px 28px rgba(0,0,0,0.22); }
     .corner-logo-badge img { width: 4.4rem; height: 4.4rem; object-fit: contain; display: block; filter: drop-shadow(0 8px 18px rgba(134,194,50,0.18)); }
+    
+    /* MODIFIED: Make stock pills transparent */
     .stock-pill {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       padding: 0.28rem 0.7rem;
       border-radius: 999px;
-      background: #F5C542;
+      background: rgba(245,197,66, 0.7); /* Translucent background */
       color: #000;
       font-size: 0.72rem;
       font-weight: 800;
@@ -49,7 +51,7 @@
       justify-content: center;
       padding: 0.22rem 0.55rem;
       border-radius: 999px;
-      background: rgba(245,197,66,0.95);
+      background: rgba(245,197,66,0.65); /* Translucent background */
       color: #000;
       font-size: 0.72rem;
       font-weight: 800;
@@ -62,7 +64,10 @@
     .product-card { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; transition: all 0.3s ease-in-out; background: rgba(17,17,17,0.9); }
     .product-card:hover { transform: translateY(-4px); border-color: rgba(134,194,50,0.45); }
     .out-of-stock { opacity: 0.6; }
-    .badge { position: absolute; top: 8px; left: 8px; font-size: 0.72rem; font-weight: 800; padding: 4px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; background: #F5C542; color: #000; box-shadow: 0 8px 22px rgba(0,0,0,0.22); }
+    
+    /* MODIFIED: Make main product badges transparent */
+    .badge { position: absolute; top: 8px; left: 8px; font-size: 0.72rem; font-weight: 800; padding: 4px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; background: rgba(245,197,66, 0.7); color: #000; box-shadow: 0 8px 22px rgba(0,0,0,0.22); }
+    
     .btn-primary { background: var(--neon); color: #1E2124; font-weight: 700; border-radius: 999px; transition: all 0.3s ease-in-out; border: 1px solid rgba(134,194,50,0.8); }
     .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 0 20px rgba(134,194,50,0.32); }
     .btn-primary:disabled { background: #3b3b3b; border-color: #3b3b3b; color: #8d8d8d; cursor: not-allowed; transform: none; box-shadow: none; }
@@ -87,14 +92,20 @@
     .product-description::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1rem; background: linear-gradient(to bottom, rgba(46,50,54,0), #2E3236); transition: opacity 0.2s; }
     .product-description.expanded { max-height: 12rem; }
     .product-description.expanded::after { opacity: 0; }
+
+    /* NEW: Products header class for correct fit */
+    .products-header-image {
+      background-image: url('/assets/images/ourproducts.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
   </style>
 </head>
 <body class="text-text-light">
 
-<!-- Mobile Menu Backdrop -->
 <div id="menu-backdrop" class="fixed inset-0 bg-black/50 z-40 hidden" onclick="closeMenu()"></div>
 
-<!-- Mobile Menu -->
 <div id="mobile-menu">
   <div class="flex justify-between items-center mb-8 brand-wrap">
     <img src="assets/images/logo.png" alt="Herbal Heights logo" class="brand-logo">
@@ -108,7 +119,6 @@
   </nav>
 </div>
 
-<!-- NAVBAR -->
 <header class="navbar sticky top-0 z-30">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
@@ -122,7 +132,6 @@
         <a href="index.html#about" class="font-medium text-text-mid hover:text-primary transition">Our Story</a>
       </nav>
       <div class="flex items-center gap-3">
-        <!-- Cart Button -->
         <button id="cart-toggle-btn" onclick="toggleCart()"
           class="relative flex items-center gap-2 border border-primary/20 rounded-full px-4 py-2 text-primary font-medium hover:bg-primary/5 transition text-sm">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
@@ -141,29 +150,21 @@
   </div>
 </header>
 
-<!-- MAIN -->
 <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen">
-  <!-- Header -->
-  <div class="mb-6 rounded-[1.75rem] border border-primary/10 p-5 sm:p-6 flex items-start justify-between gap-4 relative overflow-hidden"
-     style="background-image: url('/assets/images/ourproducts.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;">
-  <!-- Dark overlay -->
+  <div class="mb-6 -mx-4 sm:-mx-6 lg:-mx-8 products-header-image flex items-start justify-between gap-4 relative overflow-hidden"
+     aria-label="Products section header with a cannabis background image">
   <div class="absolute inset-0 bg-black/55"></div>
 
-  <!-- Content layer -->
-  <div class="relative z-10 flex-1">
+  <div class="relative z-10 flex-1 px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
     <h1 class="text-3xl sm:text-4xl font-display text-white drop-shadow-lg">Our Products</h1>
     <p class="text-text-mid mt-1 drop-shadow-md">Browse our full selection of premium cannabis products.</p>
   </div>
 
-  <div class="corner-logo-badge shrink-0 relative z-10" aria-hidden="true">
+  <div class="corner-logo-badge shrink-0 relative z-10 mt-6 mr-6 sm:mt-8 sm:mr-8" aria-hidden="true">
     <img src="assets/images/logo.png" alt="">
   </div>
 </div>
 
-  <!-- Filters -->
   <div class="flex flex-wrap gap-2 mb-6">
     <button class="filter-btn active" data-filter="all">All</button>
     <button class="filter-btn" data-filter="flower">Flower</button>
@@ -176,7 +177,6 @@
 
   <div class="divider mb-8"></div>
 
-  <!-- Pricing note -->
   <div id="pricing-note" class="mb-6 bg-secondary/10 border border-secondary/30 rounded-2xl p-4 flex justify-between items-start gap-3">
     <p class="text-sm text-text-mid"><span class="font-semibold text-primary">Pricing note:</span> Flower prices are per 1g unless stated otherwise. Edibles and drinks are priced per item/pack.</p>
     <button onclick="document.getElementById('pricing-note').remove()" class="text-xs text-primary hover:text-primary shrink-0">Got it ✕</button>
@@ -190,7 +190,6 @@
     </div>
   </div>
 
-  <!-- Products Grid -->
   <div id="products-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-5">
     <div class="col-span-2 sm:col-span-3 lg:col-span-4 xl:col-span-5 text-center py-12 text-text-mid">
       <div class="inline-block w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mb-3"></div>
@@ -200,7 +199,6 @@
   <p id="no-products" class="text-center text-text-mid py-8 hidden">No products match this filter.</p>
 </main>
 
-<!-- CART DRAWER -->
 <div id="cart-overlay" class="fixed inset-0 bg-black/50 z-50 hidden" onclick="toggleCart()"></div>
 <div id="cart-drawer">
   <div class="flex flex-col h-full">
@@ -223,7 +221,6 @@
   </div>
 </div>
 
-<!-- Mobile Floating Cart Button -->
 <button onclick="toggleCart()" id="float-cart-btn"
   class="lg:hidden fixed bottom-24 right-4 z-40 btn-primary w-14 h-14 rounded-full flex items-center justify-center shadow-xl transition">
   <div class="relative">
@@ -234,13 +231,11 @@
   </div>
 </button>
 
-<!-- WHATSAPP FAB -->
 <a href="https://wa.me/27000000000" target="_blank"
    class="fixed bottom-6 right-4 z-40 w-14 h-14 rounded-full flex items-center justify-center shadow-xl border border-white/15 bg-bg-card text-primary hover:border-primary transition duration-300">
   <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M20.52 3.48A11.91 11.91 0 0012.07 0C5.44 0 .04 5.4.04 12.03c0 2.12.55 4.18 1.6 6.01L0 24l6.15-1.61a12.03 12.03 0 005.92 1.51h.01c6.63 0 12.03-5.4 12.03-12.03 0-3.21-1.25-6.23-3.59-8.39z"/></svg>
 </a>
 
-<!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
@@ -335,11 +330,6 @@
     saveCart(); updateCartUI();
   }
 
-  function goToCheckout() {
-    if (cart.length === 0) return;
-    window.location.href = 'checkout.html';
-  }
-
   // Filter buttons
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -366,8 +356,8 @@
             <img src="${p.imageUrl || 'https://placehold.co/400x280/2D6A2D/F5C518?text=' + encodeURIComponent(p.name)}"
                  alt="${p.name}" class="w-full h-36 sm:h-44 object-cover"
                  onerror="this.src='https://placehold.co/400x280/2D6A2D/F5C518?text=Product'">
-            <span class="badge ${inStock ? '' : 'bg-red-500 text-white'}">${inStock ? 'In Stock' : 'Sold Out'}</span>
-            ${p.category ? `<span class="absolute top-8 left-8 text-xs bg-primary/80 text-white px-2 py-0.5 rounded-full capitalize">${p.category}</span>` : ''}
+            <span class="badge ${inStock ? '' : 'bg-red-500/70 text-white'}">${inStock ? 'In Stock' : 'Sold Out'}</span>
+            ${p.category ? `<span class="absolute top-8 left-8 text-xs bg-primary/70 text-white px-2 py-0.5 rounded-full capitalize">${p.category}</span>` : ''}
           </div>
           <div class="p-3 sm:p-4">
             <h3 class="font-semibold text-text-light text-sm leading-tight mb-1 line-clamp-2">${p.name}</h3>
