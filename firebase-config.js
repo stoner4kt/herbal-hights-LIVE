@@ -9,7 +9,7 @@ const firebaseConfig = {
     storageBucket: "herbal-hights.firebasestorage.app",
     messagingSenderId: "712515436958",
     appId: "1:712515436958:web:2acae09247d452c2ebd68f",
-    measurementId: "G-Z0SQ73X3PN"
+    measurementId: ""
   };
 
 // Initialize Firebase (guard against duplicate initialization)
